@@ -3,8 +3,6 @@ import cors from "cors";
 import express from "express";
 import cookieParser from "cookie-parser";
 import { connectDB } from "./lib/db.js";
-import Redis from "ioredis";
-import path from "path";
 
 //Routes Import
 import {
@@ -29,11 +27,11 @@ app.use(express.json({ limit: "10mb" })); // allows you to parse the body of the
 app.use(cookieParser());
 
 //ROUTES
-app.use("api/auth", authRoute);
-app.use("api/products", productRoute);
-app.use("api/cart", cartRoute);
-app.use("api/categories", categoryRoute);
-app.use("api/analytics", analyticsRoute);
+app.use("/api/auth", authRoute);
+app.use("/api/products", productRoute);
+app.use("/api/cart", cartRoute);
+app.use("/api/categories", categoryRoute);
+app.use("/api/analytics", analyticsRoute);
 
 app.listen(PORT, () => {
   console.log("Server is running on http://localhost:" + PORT);

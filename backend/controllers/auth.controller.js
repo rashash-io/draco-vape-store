@@ -47,12 +47,16 @@ export const signup = async (req, res) => {
       return res.status(400).json({ message: "User already exists" });
     }
     const user = await User.create({ name, email, password });
+    console.log("after create user ");
 
     // authenticate
     const { accessToken, refreshToken } = generateTokens(user._id);
+    console.log("after generate tokens");
     await storeRefreshToken(user._id, refreshToken);
+    console.log("after store refresh tokenn ");
 
     setCookies(res, accessToken, refreshToken);
+    console.log("after set cookieis ");
 
     res.status(201).json({
       _id: user._id,
